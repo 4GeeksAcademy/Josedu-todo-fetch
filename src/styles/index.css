@@ -10,3 +10,83 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    position: relative;
+    padding: 10px;
+    
+    margin-bottom: 5px;
+    border-radius: 4px;
+    
+}
+
+.task-item:hover {
+    background-color: #f3f3f3;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color 0.3s ease;
+    color: rgb(208, 138, 138);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: none;
+}
+
+.task-item:hover .delete-btn {
+    display: inline-block;
+}
+
+.form-control{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgb(172, 171, 171);
+    outline: none;
+    border-radius: 0px
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+.form-control::placeholder{
+    color: rgb(160, 160, 160)
+}
+
+.empty-list-message {
+    color: rgb(179, 179, 179)
+}
+
+.tareasPendientes {
+    color: rgb(179, 179, 179)
+}
+
+.botonTareas {
+    border-color: rgb(185, 185, 185);
+}
+
+.botonTareas:hover {
+    background-color: rgb(199, 112, 112);
+}
+/* 
+
+    You can write your own styles here...
+    
+    
+    ...Or you can use the import command to include 
+    other sylesheets into your bunde as well, e.j:
+    
+    import 'relative/path/to/stylesheet.scss';
+
+*/
