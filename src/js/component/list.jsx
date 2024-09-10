@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 const List = () => {
     const [newTask, setNewTask] = useState('');
     const [tasks, setTasks] = useState([]);
+    const GetData = () => {
+        fetch("https://playground.4geeks.com/todo/users/josedu")
+        .then(response => response.json())
+        .then(data => setTasks(data.todos))
+        .catch(error => console.error('Error fetching tasks:', error))
+    }
 
     // 1. hacer el GET para obtener la informacion del API con el useEffect
     useEffect(() => {
-        fetch("https://playground.4geeks.com/todo/users/josedu")
-            .then(response => response.json())
-            .then(data => setTasks(data.todos))
-            .catch(error => console.error('Error fetching tasks:', error));
+       GetData()
     }, []);
 
     // 2. hacer un POST para crear nuevas tareas
@@ -28,7 +31,7 @@ const List = () => {
             .then(data => {
                 console.log('Task added:', data); // Es para verificar que la tarea se esta creando con los datos correctos
                 if (data && data.id) {
-                    setTasks([...tasks, data]);
+                    GetData();
                     setNewTask(''); 
                 } else {
                     console.error('Unexpected response format:', data);
@@ -52,8 +55,7 @@ const List = () => {
                 return response.text();
             })
             .then(() => {
-                const updatedTasks = tasks.filter((_, index) => index !== indexToDelete);
-                setTasks(updatedTasks);
+                GetData();
             })
             .catch(error => console.error('Error deleting task:', error));
         } else {
@@ -76,7 +78,7 @@ const List = () => {
             .catch(error => console.error('Error deleting task:', error));
         });
 
-        setTasks([]);
+        GetData();
     };
 
     return (
